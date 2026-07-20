@@ -38,9 +38,9 @@ export default abstract class Event {
 
     //---
 
-    readonly #payload: Record<string, unknown>;
-
     readonly #occurred_at: Date;
 
     readonly #aggregate_id: string;
+
+    readonly #payload: Record<string, unknown>;
 }

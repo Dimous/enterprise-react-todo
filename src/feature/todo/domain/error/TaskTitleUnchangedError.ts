@@ -6,6 +6,6 @@ export default class TaskTitleUnchangedError extends Error {
     override name = "TaskTitleUnchangedError";
 
     constructor(public readonly id: string) {
-        super(`Task ${id} title is unchanged`);
+        super(`Текст задачи ${id} не изменён`);
     }
 }

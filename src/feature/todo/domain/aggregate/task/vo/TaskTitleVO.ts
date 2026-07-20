@@ -3,7 +3,7 @@ import InvalidTaskTitleVOValueError from "../../../error/InvalidTaskTitleVOValue
 export default class TaskTitleVO {
     static create(value: string): TaskTitleVO {
         if (!value || "string" !== typeof value) {
-            throw new InvalidTaskTitleVOValueError(String(value), "Title is required");
+            throw new InvalidTaskTitleVOValueError(String(value), "Тест сзадачи обязателен");
         }
 
         const
@@ -11,11 +11,11 @@ export default class TaskTitleVO {
         ///
         ///
         if (0 === trimmed_value.length) {
-            throw new InvalidTaskTitleVOValueError(value, "Title cannot be empty or whitespace");
+            throw new InvalidTaskTitleVOValueError(value, "Текст задачи не может быть пустым или состоять только из пробелов");
         }
 
         if (this.#MAX_LENGTH < trimmed_value.length) {
-            throw new InvalidTaskTitleVOValueError(value, `Title cannot exceed ${this.#MAX_LENGTH} characters`);
+            throw new InvalidTaskTitleVOValueError(value, `Текст задачи не может быть больше ${this.#MAX_LENGTH} символов`);
         }
 
         return new TaskTitleVO(trimmed_value);

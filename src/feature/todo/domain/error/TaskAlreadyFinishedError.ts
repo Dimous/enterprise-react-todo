@@ -6,6 +6,6 @@ export default class TaskAlreadyFinishedError extends Error {
     override name = "TaskAlreadyFinishedError";
 
     constructor(public readonly id: string) {
-        super(`Task ${id} already finished`);
+        super(`Задача ${id} уже завершена`);
     }
 }

@@ -4,6 +4,7 @@ export default abstract class Entity<TId extends TEquatable<TId>> {
     constructor(id: TId) {
         this.#id = id;
     }
+
     //---
 
     get id(): TId {
