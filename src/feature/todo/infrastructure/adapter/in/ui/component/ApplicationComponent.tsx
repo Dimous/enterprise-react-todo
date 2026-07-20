@@ -1,6 +1,6 @@
-import "./Application.css";
-import type { JSX } from "react/jsx-runtime";
-import TodoListComponent from "./feature/todo/infrastructure/adapter/in/ui/component/TodoListComponent";
+import "./style.css";
+import { type JSX } from "react";
+import TodoListComponent from "./TodoListComponent";
 
 export default (): JSX.Element => (
   <div
