@@ -1,0 +1,1 @@
+export type TIdentifiableDTO = { id: string, [key: string]: unknown }
