@@ -22,7 +22,7 @@ export default class InMemoryEventBus implements IEventBus {
     subscribe<T extends Event>(type: string, handler: THandler<T>): () => void {
         (this.#handlers[type] ??= new Set()).add(handler as THandler);
 
-        return () => {
+        return (): void => {
             const
                 handlers = this.#handlers[type];
             ///
