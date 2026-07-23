@@ -16,6 +16,8 @@ export default class DefaultRemoveTaskUseCase implements IRemoveTaskUseCase {
         ///
         ///
         if (task) {
+            task.remove();
+
             await this.task_repository.save(task);
 
             this.event_bus.publish(...task.pullEvents());
