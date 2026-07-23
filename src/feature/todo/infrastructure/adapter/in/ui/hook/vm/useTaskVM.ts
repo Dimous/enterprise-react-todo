@@ -1,6 +1,6 @@
 import type { TTaskVM } from "./TTaskVM";
 import type { TTaskState } from "./TTaskState";
-import { useCallback, useMemo, useReducer, type FocusEvent } from "react";
+import { useCallback, useMemo, useReducer, type FocusEvent, type MouseEvent } from "react";
 import { EService } from "../../../../../../../../composition_root/EService";
 import { useService } from "../../../../../../../../shared/infrastructure/adapter/in/ui/provider/ServiceLocatorProvider";
 
@@ -45,7 +45,9 @@ export default (initial_state: TTaskState): TTaskVM => {
             ]
         ),
         rename = useCallback(
-            (): void => {
+            (event: MouseEvent): void => {
+                event.preventDefault();
+
                 action({
                     type: "SET_IS_RENAMING",
                     payload: true,
@@ -56,7 +58,9 @@ export default (initial_state: TTaskState): TTaskVM => {
             ]
         ),
         remove = useCallback(
-            async (): Promise<void> => {
+            async (event: MouseEvent): Promise<void> => {
+                event.preventDefault();
+
                 if (confirm(`Действительно удалить "${state.task.title}"?`)) {
                     try {
                         await remove_task_use_case.execute(state.task.id);

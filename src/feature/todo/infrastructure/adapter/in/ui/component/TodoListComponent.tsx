@@ -8,7 +8,7 @@ export default (): JSX.Element => {
     ///
     ///
     useEffect(
-        () => {
+        (): void => {
             vm.action.load();
         },
         [
