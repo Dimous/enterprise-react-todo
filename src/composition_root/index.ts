@@ -7,68 +7,100 @@ import type ICreateTaskUseCase from "../feature/todo/application/port/in/ICreate
 import type IRemoveTaskUseCase from "../feature/todo/application/port/in/IRemoveTaskUseCase";
 import type IToggleTaskUseCase from "../feature/todo/application/port/in/IToggleTaskUseCase";
 import type IRenameTaskUseCase from "../feature/todo/application/port/in/IRenameTaskUseCase";
-import InMemoryEventBus from "../shared/infrastructure/adapter/out/event_bus/InMemoryEventBus";
-import DefaultLoadTasksUseCase from "../feature/todo/application/use_case/DefaultLoadTasksUseCase";
-import DefaultCreateTaskUseCase from "../feature/todo/application/use_case/DefaultCreateTaskUseCase";
-import DefaultRemoveTaskUseCase from "../feature/todo/application/use_case/DefaultRemoveTaskUseCase";
-import DefaultToggleTaskUseCase from "../feature/todo/application/use_case/DefaultToggleTaskUseCase";
-import DefaultRenameTaskUseCase from "../feature/todo/application/use_case/DefaultRenameTaskUseCase";
-import DefaultTaskRepository from "../feature/todo/infrastructure/adapter/out/repository/DefaultTaskRepository";
-import IndexedDBLocalDataSource from "../shared/infrastructure/adapter/out/data_source/IndexedDBLocalDataSource";
 
 export default {
     // :::::::::::::::::: СЦЕНАРИИ ИСПОЛЬЗОВАНИЯ
 
-    get [EService.ILoadTasksUseCase](): ILoadTasksUseCase {
+    get [EService.ILoadTasksUseCase](): Promise<ILoadTasksUseCase> {
         return Object.defineProperty(
             this,
             EService.ILoadTasksUseCase,
             {
-                value: new DefaultLoadTasksUseCase(this[EService.ITaskRepository])
+                value: (
+                    async () => {
+                        const
+                            { default: DefaultLoadTasksUseCase } = await import("../feature/todo/application/use_case/DefaultLoadTasksUseCase");
+                        ///
+                        ///
+                        return new DefaultLoadTasksUseCase(await this[EService.ITaskRepository]);
+                    }
+                )()
             }
         )
         [EService.ILoadTasksUseCase]
     },
 
-    get [EService.ICreateTaskUseCase](): ICreateTaskUseCase {
+    get [EService.ICreateTaskUseCase](): Promise<ICreateTaskUseCase> {
         return Object.defineProperty(
             this,
             EService.ICreateTaskUseCase,
             {
-                value: new DefaultCreateTaskUseCase(this[EService.ITaskRepository], this[EService.IEventBus])
+                value: (
+                    async () => {
+                        const
+                            { default: DefaultCreateTaskUseCase } = await import("../feature/todo/application/use_case/DefaultCreateTaskUseCase");
+                        ///
+                        ///
+                        return new DefaultCreateTaskUseCase(await this[EService.ITaskRepository], await this[EService.IEventBus]);
+                    }
+                )()
             }
         )
         [EService.ICreateTaskUseCase]
     },
 
-    get [EService.IRemoveTaskUseCase](): IRemoveTaskUseCase {
+    get [EService.IRemoveTaskUseCase](): Promise<IRemoveTaskUseCase> {
         return Object.defineProperty(
             this,
             EService.IRemoveTaskUseCase,
             {
-                value: new DefaultRemoveTaskUseCase(this[EService.ITaskRepository], this[EService.IEventBus])
+                value: (
+                    async () => {
+                        const
+                            { default: DefaultRemoveTaskUseCase } = await import("../feature/todo/application/use_case/DefaultRemoveTaskUseCase");
+                        ///
+                        ///
+                        return new DefaultRemoveTaskUseCase(await this[EService.ITaskRepository], await this[EService.IEventBus]);
+                    }
+                )()
             }
         )
         [EService.IRemoveTaskUseCase]
     },
 
-    get [EService.IToggleTaskUseCase](): IToggleTaskUseCase {
+    get [EService.IToggleTaskUseCase](): Promise<IToggleTaskUseCase> {
         return Object.defineProperty(
             this,
             EService.IToggleTaskUseCase,
             {
-                value: new DefaultToggleTaskUseCase(this[EService.ITaskRepository], this[EService.IEventBus])
+                value: (
+                    async () => {
+                        const
+                            { default: DefaultToggleTaskUseCase } = await import("../feature/todo/application/use_case/DefaultToggleTaskUseCase");
+                        ///
+                        ///
+                        return new DefaultToggleTaskUseCase(await this[EService.ITaskRepository], await this[EService.IEventBus]);
+                    }
+                )()
             }
         )
         [EService.IToggleTaskUseCase]
     },
 
-    get [EService.IRenameTaskUseCase](): IRenameTaskUseCase {
+    get [EService.IRenameTaskUseCase](): Promise<IRenameTaskUseCase> {
         return Object.defineProperty(
             this,
             EService.IRenameTaskUseCase,
             {
-                value: new DefaultRenameTaskUseCase(this[EService.ITaskRepository], this[EService.IEventBus])
+                value: (
+                    async () => {
+                        const
+                            { default: DefaultRenameTaskUseCase } = await import("../feature/todo/application/use_case/DefaultRenameTaskUseCase");
+                        ///
+                        ///
+                        return new DefaultRenameTaskUseCase(await this[EService.ITaskRepository], await this[EService.IEventBus]);
+                    }
+                )()
             }
         )
         [EService.IRenameTaskUseCase]
@@ -76,12 +108,20 @@ export default {
 
     // :::::::::::::::::: РЕПОЗИТОРИИ
 
-    get [EService.ITaskRepository](): ITaskRepository {
+    get [EService.ITaskRepository](): Promise<ITaskRepository> {
         return Object.defineProperty(
             this,
             EService.ITaskRepository,
             {
-                value: new DefaultTaskRepository(this[EService.ILocalDataSource])
+                value: (
+                    async () => {
+                        const
+                            { default: DefaultTaskRepository } = await import("../feature/todo/infrastructure/adapter/out/repository/DefaultTaskRepository");
+                        ///
+                        ///
+                        return new DefaultTaskRepository(await this[EService.ILocalDataSource]);
+                    }
+                )()
             }
         )
         [EService.ITaskRepository]
@@ -89,12 +129,20 @@ export default {
 
     // :::::::::::::::::: ИСТОЧНИКИ ДАННЫХ
 
-    get [EService.ILocalDataSource](): ILocalDataSource {
+    get [EService.ILocalDataSource](): Promise<ILocalDataSource> {
         return Object.defineProperty(
             this,
             EService.ILocalDataSource,
             {
-                value: new IndexedDBLocalDataSource("enterprise-react-todo", 1)
+                value: (
+                    async () => {
+                        const
+                            { default: IndexedDBLocalDataSource } = await import("../shared/infrastructure/adapter/out/data_source/IndexedDBLocalDataSource");
+                        ///
+                        ///
+                        return new IndexedDBLocalDataSource("enterprise-react-todo", 1);
+                    }
+                )()
             }
         )
         [EService.ILocalDataSource]
@@ -102,12 +150,20 @@ export default {
 
     // :::::::::::::::::: ПРИКЛАДНЫЕ СЕРВИСЫ
 
-    get [EService.IEventBus](): IEventBus {
+    get [EService.IEventBus](): Promise<IEventBus> {
         return Object.defineProperty(
             this,
             EService.IEventBus,
             {
-                value: new InMemoryEventBus()
+                value: (
+                    async () => {
+                        const
+                            { default: InMemoryEventBus } = await import("../shared/infrastructure/adapter/out/event_bus/InMemoryEventBus");
+                        ///
+                        ///
+                        return new InMemoryEventBus();
+                    }
+                )()
             }
         )
         [EService.IEventBus]
