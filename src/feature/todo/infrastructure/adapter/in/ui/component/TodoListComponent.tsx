@@ -1,6 +1,7 @@
 import { useEffect, type JSX } from "react";
 import TaskComponent from "./TaskComponent";
 import useTodoListVM from "../hook/vm/useTodoListVM";
+import type { TTaskDTO } from "../hook/dto/TTaskDTO";
 
 export default (): JSX.Element => {
     const
@@ -54,10 +55,10 @@ export default (): JSX.Element => {
                             Object
                                 .values(vm.state.tasks)
                                 .sort(
-                                    (task_1, task_2) => task_2.created_at.getTime() - task_1.created_at.getTime()
+                                    (task_1: TTaskDTO, task_2: TTaskDTO): number => task_2.created_at.getTime() - task_1.created_at.getTime()
                                 )
                                 .map(
-                                    task => (
+                                    (task: TTaskDTO): JSX.Element => (
                                         <TaskComponent
                                             task={
                                                 task

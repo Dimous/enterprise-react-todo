@@ -1,7 +1,7 @@
 import type { TTaskVM } from "./TTaskVM";
 import type { TTaskState } from "./TTaskState";
-import { useCallback, useMemo, useReducer, type FocusEvent, type MouseEvent } from "react";
 import { EService } from "../../../../../../../../composition_root/EService";
+import { useCallback, useMemo, useReducer, type FocusEvent, type MouseEvent } from "react";
 import { useService } from "../../../../../../../../shared/infrastructure/adapter/in/ui/provider/ServiceLocatorProvider";
 
 export default (initial_state: TTaskState): TTaskVM => {

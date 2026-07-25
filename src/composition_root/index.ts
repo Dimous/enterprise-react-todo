@@ -8,6 +8,15 @@ import type IRemoveTaskUseCase from "../feature/todo/application/port/in/IRemove
 import type IToggleTaskUseCase from "../feature/todo/application/port/in/IToggleTaskUseCase";
 import type IRenameTaskUseCase from "../feature/todo/application/port/in/IRenameTaskUseCase";
 
+/**
+ * для react native в metro.config.js
+   module.exports = {
+        transformer: {
+            inlineRequires: true,
+        },
+    };
+ */
+
 export default {
     // :::::::::::::::::: СЦЕНАРИИ ИСПОЛЬЗОВАНИЯ
 
@@ -17,7 +26,7 @@ export default {
             EService.ILoadTasksUseCase,
             {
                 value: (
-                    async () => {
+                    async (): Promise<ILoadTasksUseCase> => {
                         const
                             { default: DefaultLoadTasksUseCase } = await import("../feature/todo/application/use_case/DefaultLoadTasksUseCase");
                         ///
@@ -36,7 +45,7 @@ export default {
             EService.ICreateTaskUseCase,
             {
                 value: (
-                    async () => {
+                    async (): Promise<ICreateTaskUseCase> => {
                         const
                             { default: DefaultCreateTaskUseCase } = await import("../feature/todo/application/use_case/DefaultCreateTaskUseCase");
                         ///
@@ -55,7 +64,7 @@ export default {
             EService.IRemoveTaskUseCase,
             {
                 value: (
-                    async () => {
+                    async (): Promise<IRemoveTaskUseCase> => {
                         const
                             { default: DefaultRemoveTaskUseCase } = await import("../feature/todo/application/use_case/DefaultRemoveTaskUseCase");
                         ///
@@ -74,7 +83,7 @@ export default {
             EService.IToggleTaskUseCase,
             {
                 value: (
-                    async () => {
+                    async (): Promise<IToggleTaskUseCase> => {
                         const
                             { default: DefaultToggleTaskUseCase } = await import("../feature/todo/application/use_case/DefaultToggleTaskUseCase");
                         ///
@@ -93,7 +102,7 @@ export default {
             EService.IRenameTaskUseCase,
             {
                 value: (
-                    async () => {
+                    async (): Promise<IRenameTaskUseCase> => {
                         const
                             { default: DefaultRenameTaskUseCase } = await import("../feature/todo/application/use_case/DefaultRenameTaskUseCase");
                         ///
@@ -114,7 +123,7 @@ export default {
             EService.ITaskRepository,
             {
                 value: (
-                    async () => {
+                    async (): Promise<ITaskRepository> => {
                         const
                             { default: DefaultTaskRepository } = await import("../feature/todo/infrastructure/adapter/out/repository/DefaultTaskRepository");
                         ///
@@ -135,7 +144,7 @@ export default {
             EService.ILocalDataSource,
             {
                 value: (
-                    async () => {
+                    async (): Promise<ILocalDataSource> => {
                         const
                             { default: IndexedDBLocalDataSource } = await import("../shared/infrastructure/adapter/out/data_source/IndexedDBLocalDataSource");
                         ///
@@ -156,7 +165,7 @@ export default {
             EService.IEventBus,
             {
                 value: (
-                    async () => {
+                    async (): Promise<IEventBus> => {
                         const
                             { default: InMemoryEventBus } = await import("../shared/infrastructure/adapter/out/event_bus/InMemoryEventBus");
                         ///

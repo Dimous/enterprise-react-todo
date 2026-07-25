@@ -10,31 +10,31 @@ export default class IndexedDBLocalDataSource implements ILocalDataSource {
     //---
 
     async get(id: string): Promise<TIdentifiableDTO | undefined> {
-        return this.#withTransaction("readonly", object_store => object_store.get(id));
+        return this.#withTransaction("readonly", (object_store: IDBObjectStore): IDBRequest<any> => object_store.get(id));
     }
 
     //---
 
     async put(dto: TIdentifiableDTO): Promise<void> {
-        await this.#withTransaction("readwrite", object_store => object_store.put(dto));
+        await this.#withTransaction("readwrite", (object_store: IDBObjectStore): IDBRequest<any> => object_store.put(dto));
     }
 
     //---
 
     async getAll(): Promise<TIdentifiableDTO[]> {
-        return this.#withTransaction("readonly", object_store => object_store.getAll());
+        return this.#withTransaction("readonly", (object_store: IDBObjectStore): IDBRequest<any> => object_store.getAll());
     }
 
     //---
 
     async clear(): Promise<void> {
-        return this.#withTransaction("readwrite", object_store => object_store.clear());
+        return this.#withTransaction("readwrite", (object_store: IDBObjectStore): IDBRequest<any> => object_store.clear());
     }
 
     //---
 
     async delete(id: string): Promise<void> {
-        return this.#withTransaction("readwrite", object_store => object_store.delete(id));
+        return this.#withTransaction("readwrite", (object_store: IDBObjectStore): IDBRequest<any> => object_store.delete(id));
     }
 
     //---
@@ -109,13 +109,9 @@ export default class IndexedDBLocalDataSource implements ILocalDataSource {
                     request.onerror = (): void => reject(request.error);
 
                     request.onsuccess = (): void => {
-                        const
-                            value = request.result;
-                        ///
-                        ///
-                        transaction.oncomplete = (): void => resolve(value);
+                        transaction.oncomplete = (): void => resolve(request.result);
                     };
-                } catch (error) {
+                } catch (error: unknown) {
                     transaction.abort();
 
                     reject(error);

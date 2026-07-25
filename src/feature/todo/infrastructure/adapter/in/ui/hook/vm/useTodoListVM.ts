@@ -9,6 +9,7 @@ import TaskResumedEvent from "../../../../../../domain/event/TaskResumedEvent";
 import TaskFinishedEvent from "../../../../../../domain/event/TaskFinishedEvent";
 import { useCallback, useEffect, useMemo, useReducer, type SubmitEvent } from "react";
 import { useService } from "../../../../../../../../shared/infrastructure/adapter/in/ui/provider/ServiceLocatorProvider";
+import type TaskAggregateRoot from "../../../../../../domain/aggregate/task/TaskAggregateRoot";
 
 export default (initial_state: TTodoListState = { tasks: {}, is_loading: false }): TTodoListVM => {
     const
@@ -63,7 +64,7 @@ export default (initial_state: TTodoListState = { tasks: {}, is_loading: false }
 
                             tasks: Object.fromEntries(
                                 action.payload.map(
-                                    task => [task.id, task]
+                                    (task: TTaskDTO): [string, TTaskDTO] => [task.id, task]
                                 )
                             ),
                         };
@@ -101,7 +102,7 @@ export default (initial_state: TTodoListState = { tasks: {}, is_loading: false }
                     action({
                         type: "SET_TASKS",
                         payload: tasks.map(
-                            task => ({
+                            (task: TaskAggregateRoot): { id: string, title: string, created_at: Date, is_finished: boolean } => ({
                                 id: task.id.value,
                                 title: task.title.value,
                                 created_at: task.created_at,
@@ -156,7 +157,7 @@ export default (initial_state: TTodoListState = { tasks: {}, is_loading: false }
     ///
     // это проектор в state
     useEffect(
-        () => {
+        (): () => void => {
             const
                 unsubscribe_task_created = event_bus.subscribe(
                     TaskCreatedEvent.TYPE,
@@ -227,7 +228,7 @@ export default (initial_state: TTodoListState = { tasks: {}, is_loading: false }
                 );
             ///
             ///
-            return () => {
+            return (): void => {
                 unsubscribe_task_created();
 
                 unsubscribe_task_removed();

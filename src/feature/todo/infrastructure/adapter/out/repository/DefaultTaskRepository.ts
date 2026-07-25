@@ -4,6 +4,7 @@ import type TaskIdVO from "../../../../domain/aggregate/task/vo/TaskIdVO";
 import type ITaskRepository from "../../../../domain/port/out/ITaskRepository";
 import type TaskAggregateRoot from "../../../../domain/aggregate/task/TaskAggregateRoot";
 import type ILocalDataSource from "../../../../../../shared/application/port/out/ILocalDataSource";
+import type { TIdentifiableDTO } from "../../../../../../shared/infrastructure/adapter/out/data_source/TIdentifiableDTO";
 
 export default class DefaultTaskRepository implements ITaskRepository {
     constructor(private readonly local_data_source: ILocalDataSource) { }
@@ -23,7 +24,7 @@ export default class DefaultTaskRepository implements ITaskRepository {
             all = await this.local_data_source.getAll();
         ///
         ///
-        return all.map(dto => TaskMapper.toEntity(dto as TTaskDTO));
+        return all.map((dto: TIdentifiableDTO): TaskAggregateRoot => TaskMapper.toEntity(dto as TTaskDTO));
     }
 
     //---
