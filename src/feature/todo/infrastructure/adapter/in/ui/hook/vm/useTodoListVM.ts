@@ -127,7 +127,7 @@ export default (initial_state: TTodoListState = { tasks: {}, is_loading: false }
         submit = useCallback(
             async (event: SubmitEvent): Promise<void> => {
                 const
-                    form = event.currentTarget as HTMLFormElement;
+                    form = event.target as HTMLFormElement;
                 ///
                 ///
                 event.preventDefault();

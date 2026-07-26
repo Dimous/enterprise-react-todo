@@ -28,7 +28,7 @@ export default (initial_state: TTaskState): TTaskVM => {
         blur = useCallback(
             async (event: FocusEvent<HTMLInputElement>): Promise<void> => {
                 try {
-                    await rename_task_use_case.execute(state.task.id, event.currentTarget.value);
+                    await rename_task_use_case.execute(state.task.id, event.target.value);
                 } catch (error: unknown) {
                     console.error(error);
                 } finally {
