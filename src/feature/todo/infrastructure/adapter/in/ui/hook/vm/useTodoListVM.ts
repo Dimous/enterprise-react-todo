@@ -8,8 +8,8 @@ import TaskRenamedEvent from "../../../../../../domain/event/TaskRenamedEvent";
 import TaskResumedEvent from "../../../../../../domain/event/TaskResumedEvent";
 import TaskFinishedEvent from "../../../../../../domain/event/TaskFinishedEvent";
 import { useCallback, useEffect, useMemo, useReducer, type SubmitEvent } from "react";
-import { useService } from "../../../../../../../../shared/infrastructure/adapter/in/ui/provider/ServiceLocatorProvider";
 import type TaskAggregateRoot from "../../../../../../domain/aggregate/task/TaskAggregateRoot";
+import { useService } from "../../../../../../../../shared/infrastructure/adapter/in/ui/provider/ServiceLocatorProvider";
 
 export default (initial_state: TTodoListState = { tasks: {}, is_loading: false }): TTodoListVM => {
     const
