@@ -1,7 +1,7 @@
 import TaskMapper from "../mapper/TaskMapper";
 import type { TTaskDTO } from "../data_source/dto/TTaskDTO";
 import type TaskIdVO from "../../../../domain/aggregate/task/vo/TaskIdVO";
-import type ITaskRepository from "../../../../domain/port/out/ITaskRepository";
+import type ITaskRepository from "../../../../application/port/out/ITaskRepository";
 import type TaskAggregateRoot from "../../../../domain/aggregate/task/TaskAggregateRoot";
 import type ILocalDataSource from "../../../../../../shared/application/port/out/ILocalDataSource";
 import type { TIdentifiableDTO } from "../../../../../../shared/infrastructure/adapter/out/data_source/TIdentifiableDTO";

@@ -1,7 +1,7 @@
 import { EService } from "./EService";
-import type IEventBus from "../shared/application/port/out/IEventBus";
-import type ITaskRepository from "../feature/todo/domain/port/out/ITaskRepository";
+import type IEventBus from "../foundation/messaging/IEventBus";
 import type ILocalDataSource from "../shared/application/port/out/ILocalDataSource";
+import type ITaskRepository from "../feature/todo/application/port/out/ITaskRepository";
 import type ILoadTasksUseCase from "../feature/todo/application/port/in/ILoadTasksUseCase";
 import type ICreateTaskUseCase from "../feature/todo/application/port/in/ICreateTaskUseCase";
 import type IRemoveTaskUseCase from "../feature/todo/application/port/in/IRemoveTaskUseCase";

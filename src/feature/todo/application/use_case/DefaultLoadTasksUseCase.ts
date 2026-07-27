@@ -1,5 +1,5 @@
+import type ITaskRepository from "../port/out/ITaskRepository";
 import type ILoadTasksUseCase from "../port/in/ILoadTasksUseCase";
-import type ITaskRepository from "../../domain/port/out/ITaskRepository";
 import type TaskAggregateRoot from "../../domain/aggregate/task/TaskAggregateRoot";
 
 export default class DefaultLoadTasksUseCase implements ILoadTasksUseCase {

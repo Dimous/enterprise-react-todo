@@ -1,7 +1,7 @@
 import TaskIdVO from "../../domain/aggregate/task/vo/TaskIdVO";
+import type ITaskRepository from "../port/out/ITaskRepository";
 import type IToggleTaskUseCase from "../port/in/IToggleTaskUseCase";
-import type ITaskRepository from "../../domain/port/out/ITaskRepository";
-import type IEventBus from "../../../../shared/application/port/out/IEventBus";
+import type IEventBus from "../../../../foundation/messaging/IEventBus";
 
 export default class DefaultToggleTaskUseCase implements IToggleTaskUseCase {
     constructor(private readonly task_repository: ITaskRepository, private readonly event_bus: IEventBus) { }

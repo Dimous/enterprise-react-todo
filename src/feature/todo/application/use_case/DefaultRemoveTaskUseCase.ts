@@ -1,7 +1,7 @@
 import TaskIdVO from "../../domain/aggregate/task/vo/TaskIdVO";
+import type ITaskRepository from "../port/out/ITaskRepository";
 import type IRemoveTaskUseCase from "../port/in/IRemoveTaskUseCase";
-import type ITaskRepository from "../../domain/port/out/ITaskRepository";
-import type IEventBus from "../../../../shared/application/port/out/IEventBus";
+import type IEventBus from "../../../../foundation/messaging/IEventBus";
 
 export default class DefaultRemoveTaskUseCase implements IRemoveTaskUseCase {
     constructor(private readonly task_repository: ITaskRepository, private readonly event_bus: IEventBus) { }

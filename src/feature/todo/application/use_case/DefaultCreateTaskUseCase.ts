@@ -1,8 +1,7 @@
-
+import type ITaskRepository from "../port/out/ITaskRepository";
 import type ICreateTaskUseCase from "../port/in/ICreateTaskUseCase";
-import type ITaskRepository from "../../domain/port/out/ITaskRepository";
+import type IEventBus from "../../../../foundation/messaging/IEventBus";
 import TaskAggregateRoot from "../../domain/aggregate/task/TaskAggregateRoot";
-import type IEventBus from "../../../../shared/application/port/out/IEventBus";
 
 export default class DefaultCreateTaskUseCase implements ICreateTaskUseCase {
     constructor(private readonly task_repository: ITaskRepository, private readonly event_bus: IEventBus) { }

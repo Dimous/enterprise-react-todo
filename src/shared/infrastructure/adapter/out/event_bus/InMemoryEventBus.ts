@@ -1,6 +1,6 @@
-import type { THandler } from "./THandler";
 import Event from "../../../../../foundation/domain/Event";
-import type IEventBus from "../../../../application/port/out/IEventBus";
+import type IEventBus from "../../../../../foundation/messaging/IEventBus";
+import type { THandler } from "../../../../../foundation/messaging/THandler";
 
 export default class InMemoryEventBus implements IEventBus {
     publish(...events: Event[]): void {

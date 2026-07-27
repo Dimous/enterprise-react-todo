@@ -1,3 +1,3 @@
-import Event from "../../../../../foundation/domain/Event";
+import Event from "../domain/Event";
 
 export type THandler<T extends Event = Event> = (event: T) => void;
