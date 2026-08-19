@@ -12,7 +12,8 @@ export default class DefaultRemoveTaskUseCase implements IRemoveTaskUseCase {
         // ES
 
         const
-            task = await this.task_repository.load(TaskIdVO.create(id));
+            task_id = TaskIdVO.create(id),
+            task = await this.task_repository.load(task_id);
         ///
         ///
         if (task) {
@@ -25,6 +26,6 @@ export default class DefaultRemoveTaskUseCase implements IRemoveTaskUseCase {
 
         // ADO
 
-        await this.task_repository.remove(TaskIdVO.create(id));
+        await this.task_repository.remove(task_id);
     }
 }
