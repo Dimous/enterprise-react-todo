@@ -119,7 +119,8 @@ export default (initial_state: TTaskState): TTaskVM => {
 //---
 
 type TAction =
-    | {
+    |
+    {
         type: "SET_IS_RENAMING",
         payload: boolean,
     };
