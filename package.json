@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "@ver0/deep-equal": "^2.0.1",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-error-boundary": "^6.1.5"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.2.4",
+    "@rsbuild/core": "^2.2.5",
     "@rsbuild/plugin-react": "^2.1.0",
     "@rsbuild/plugin-tailwindcss": "^2.0.3",
     "@types/node": "^26.5.0",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2"
   }
