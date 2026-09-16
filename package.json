@@ -16,7 +16,7 @@
     "react-error-boundary": "^6.1.5"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.2.6",
+    "@rsbuild/core": "^2.2.7",
     "@rsbuild/plugin-react": "^2.1.0",
     "@rsbuild/plugin-tailwindcss": "^2.0.3",
     "@types/node": "^26.5.1",
