@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@rsbuild/core": "^2.2.10",
-    "@rsbuild/plugin-react": "^2.1.0",
+    "@rsbuild/plugin-react": "^2.1.1",
     "@rsbuild/plugin-tailwindcss": "^2.0.3",
     "@types/node": "^26.6.3",
     "@types/react": "^19.3.0",
